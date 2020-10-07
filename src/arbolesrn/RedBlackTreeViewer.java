@@ -180,8 +180,10 @@ public class RedBlackTreeViewer extends javax.swing.JFrame {
         btnPreorden.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                arbol.preorden(arbol.Raiz());
-                String preOrdenPuntos = String.valueOf(arbol.preordenData);
+                ArrayList<String> inordenData = new ArrayList<String>();
+                imprimirOrden.setText(null);
+                arbol.preorden(arbol.Raiz(),inordenData);
+                String preOrdenPuntos = String.valueOf(inordenData);
                 imprimirOrden.setText(preOrdenPuntos);
             }
         });

@@ -129,8 +129,6 @@ class Rojinegros {
     } 
  
     void inorden (Nodo p, int j, String s) { 
-        
-        //System.out.println("ll "+p.llave);
         if (p != z) { 
             inorden (p.izq, j+1,"i");
             if (p.color == ROJO) {
@@ -143,12 +141,9 @@ class Rojinegros {
             else{ 
                 System.out.print( " " + p.llave + "-" + "N"+"-"+j+"-"+s); 
                 inordenData.add(p.llave + "-" + "N"+"-"+j+"-"+s+"-"+p.nombre);
-
-                //num = (j != 0 && num == 0) ? j : 0;
                  if((j != 0 && num == 0)  || j>num ) {
                     num = j;
-                }
-                
+                }                
             }
             inorden (p.der, j+1,"d"); 
         }
@@ -158,18 +153,18 @@ class Rojinegros {
         }
         //System.out.println("numero mayor "+num);
     } 
-
-    void preorden (Nodo p) { 
-        if (p != z) { 
+    
+    void preorden(Nodo p, ArrayList<String> datos) {
+        if (p != z) {
             if (p.color == ROJO) {
-                preordenData.add(p.llave+"R");
-                System.out.print( " " + p.llave + "" + "R");
-            } 
-            else {
-                System.out.print( " " + p.llave + "" + "N");
-                preordenData.add(p.llave+"N");}
-            preorden (p.izq); 
-            preorden (p.der);
+                datos.add(p.llave + "R");
+                System.out.print(" " + p.llave + "" + "R");
+            }else {
+                datos.add(p.llave + "N");
+                System.out.print(" " + p.llave + "" + "N");    
+            }
+        preorden(p.izq,datos);
+        preorden(p.der,datos);
         }
     }
     
